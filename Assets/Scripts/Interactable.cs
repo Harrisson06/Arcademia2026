@@ -21,14 +21,13 @@ public abstract class Interactable : MonoBehaviour
     [SerializeField] protected LayerMask playerLayer;
 
     protected bool playerInRange;
-    protected bool hasInteracted;
     protected Transform playerTransform;
 
     protected virtual void Update()
     {
         CheckForPlayer();
 
-        if (playerInRange && !hasInteracted && Input.GetKeyDown(interactKey))
+        if (playerInRange && Input.GetKeyDown(interactKey) && IsClosestInteractable())
         {
             Interact();
         }
@@ -69,7 +68,34 @@ public abstract class Interactable : MonoBehaviour
             onPlayerExitRange?.Invoke();
             InteractablePromptUI.Instance?.HidePrompt();
         }
+
+        if (playerInRange)
+        {
+            if (IsClosestInteractable())
+                InteractablePromptUI.Instance?.ShowPrompt(promptMessage, interactKey, transform.position);
+            else
+                InteractablePromptUI.Instance?.HidePrompt();
+        }
     }
+
+    private bool IsClosestInteractable()
+    {
+        float myDistance = Vector2.Distance(transform.position, playerTransform.position);
+
+        // Find all interactables in the scene
+        Interactable[] allInteractables = FindObjectsByType<Interactable>(FindObjectsSortMode.None);
+
+        foreach (var other in allInteractables)
+        {
+            if (other == this) continue;
+            if (!other.playerInRange) continue;
+
+            float otherDistance = Vector2.Distance(other.transform.position, playerTransform.position);
+            if (otherDistance < myDistance) return false;
+        }
+        return true;
+    }
+
     protected virtual void OnPlayerEnterRange() { }
 
     protected virtual void OnPlayerExitRange() { }

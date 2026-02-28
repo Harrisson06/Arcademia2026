@@ -15,6 +15,9 @@ public class Vitals : MonoBehaviour
     public int maxStamina = 100;
     [SerializeField] private int currentStamina;
 
+    public Inventory inventory;
+
+
     private void Awake()
     {
         currentHealth = maxHealth;
@@ -89,5 +92,10 @@ public class Vitals : MonoBehaviour
     public void UpdateStaminaBar()
     {
         // do stamina bar stuff
+    }
+
+    private void CollectItem()
+    {
+        
     }
 }
