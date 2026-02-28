@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.Accessibility;
 
 public class Movement : MonoBehaviour
 {
     [Header("Components")]
     public Rigidbody2D rb;
     public SpriteRenderer sr;
+    private Vitals vitals;
 
     [Header("Basic Movement")]
     [SerializeField] private float maxSpeed = 5f;
@@ -52,6 +54,11 @@ public class Movement : MonoBehaviour
             spinning = false;
     }
 
+    private void Awake()
+    {
+        vitals = GetComponent<Vitals>();
+    }
+
     void FixedUpdate()
     {
         ApplyMovement();
@@ -71,6 +78,7 @@ public class Movement : MonoBehaviour
             {
                 playerState = PlayerState.Idle;
                 sr.color = Color.white;
+                vitals.GiveStamina(15f * Time.deltaTime);
             }
         }
         else if (playerState != PlayerState.Dash) {
@@ -98,13 +106,14 @@ public class Movement : MonoBehaviour
         if (rb.linearVelocity != Vector2.zero && playerState != PlayerState.Dash)
             lastMoveDirection = rb.linearVelocity.normalized;
 
-        if (dashRequested)
+        if (dashRequested && vitals.TakeStamina(10))
         {
             dashRequested = false;
             playerState = PlayerState.Dash;
             dashTimer = dashDuration;
             rb.linearVelocity = lastMoveDirection * dashForce;
             sr.color = Color.blue;
+            
         }
 
         if (playerState == PlayerState.Dash)
