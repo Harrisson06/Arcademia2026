@@ -8,14 +8,14 @@ public class Vitals : MonoBehaviour
     [Header("Health")]
     public int maxHealth = 100;
     [SerializeField] private int currentHealth;
-    public Image healthFill;
+    public GameObject HealthBar;
+    public Image FillImage;
 
     [Header("Stamina")]
     public int maxStamina = 100;
-    [SerializeField] private float currentStamina;
-    public Image staminaFill;
+    [SerializeField] private int currentStamina;
 
-    private Inventory inventory;
+    public Inventory inventory;
 
 
     private void Awake()
@@ -34,7 +34,7 @@ public class Vitals : MonoBehaviour
     {
         if (currentHealth - amount <= 0)
         {
-            //Die();
+            Die();
         }
         else
         {
@@ -57,29 +57,27 @@ public class Vitals : MonoBehaviour
     public void UpdateHealthBar()
     {
         float targetFill = (float)currentHealth / maxHealth;
-        if (targetFill > 0.5f){
-            healthFill.color = Color.green;
-        }
-        else if (targetFill > 0.3f)
-        {
-            healthFill.color = Color.yellow;
-        } else
-        {
-            healthFill.color = Color.red;
-        }
-        healthFill.fillAmount = Mathf.Lerp(healthFill.fillAmount, targetFill, Time.deltaTime * 5f);
+        FillImage.fillAmount = Mathf.Lerp(FillImage.fillAmount, targetFill, Time.deltaTime * 5f);
     }
 
-    public bool TakeStamina(int amount)
+    void Die()
     {
-        if (currentStamina - amount < 0)
-            return false;        
-        
-        currentStamina -= amount;
-        return true;
+
     }
 
-    public void GiveStamina(float amount)
+    public void TakeStamina(int amount)
+    {
+        if (currentStamina - amount <= 0)
+        {
+            currentStamina = 0;
+        }
+        else
+        {
+            currentStamina -= amount;
+        }
+    }
+
+    public void GiveStamina(int amount)
     {
         if (currentStamina + amount >= maxStamina)
         {
@@ -93,7 +91,11 @@ public class Vitals : MonoBehaviour
 
     public void UpdateStaminaBar()
     {
-        float targetFill = (float)currentStamina / maxStamina;
-        staminaFill.fillAmount = Mathf.Lerp(staminaFill.fillAmount, targetFill, Time.deltaTime * 5f);
+        // do stamina bar stuff
+    }
+
+    private void CollectItem()
+    {
+        
     }
 }
