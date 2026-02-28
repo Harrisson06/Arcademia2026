@@ -24,6 +24,7 @@ public class Vitals : MonoBehaviour
     private void LateUpdate()
     {
         UpdateHealthBar();
+        UpdateStaminaBar();
     }
 
     public void TakeHealth(int amount)
@@ -71,7 +72,6 @@ public class Vitals : MonoBehaviour
         {
             currentStamina -= amount;
         }
-        UpdateStaminaBar();
     }
 
     public void GiveStamina(int amount)
@@ -84,7 +84,6 @@ public class Vitals : MonoBehaviour
         {
             currentStamina += amount;
         }
-        UpdateStaminaBar();
     }
 
     public void UpdateStaminaBar()
