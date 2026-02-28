@@ -115,7 +115,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &5525331932274116500
 MonoBehaviour:
@@ -145,4 +145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
+  HealthBar: {fileID: 0}
+  FillImage: {fileID: 0}
   maxStamina: 100
+  currentStamina: 0
