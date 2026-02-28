@@ -3680,6 +3680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShopUI: {fileID: 2145768752}
+  healthBar: {fileID: 0}
   PlayerInRange: 0
 --- !u!1 &1075478197
 GameObject:
@@ -6619,7 +6620,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a7937db68870d24dbe039bb558c1271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShopUI: {fileID: 0}
+  ShopUI: {fileID: 2145768752}
+  healthBar: {fileID: 1825237135}
   PlayerInRange: 0
 --- !u!1 &2145768752
 GameObject:
