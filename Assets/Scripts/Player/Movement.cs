@@ -25,6 +25,9 @@ public class Movement : MonoBehaviour
     private float dashDuration = 0.2f;
     private float dashTimer = 0f;
 
+    [Header("Spin")]
+    private bool spinning = false;
+
     enum PlayerState
     {
         Idle,
@@ -41,12 +44,19 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && playerState != PlayerState.Dash)
             dashRequested = true;
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            spinning = true;
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+            spinning = false;
     }
 
     void FixedUpdate()
     {
         ApplyMovement();
         HandleDash();
+        Spin();
     }
 
     void ApplyMovement()
@@ -105,6 +115,25 @@ public class Movement : MonoBehaviour
                 dashTimer = 0f;
                 currentVelocity = rb.linearVelocity;
                 playerState = PlayerState.Moving;
+            }
+        }
+    }
+
+    private float currentSpinSpeed = 0f;
+    const float spinDeceleration = 180f;
+    void Spin()
+    {
+        if (spinning)
+        {
+            currentSpinSpeed = 720f;
+            transform.Rotate(0f, 0f, currentSpinSpeed * Time.fixedDeltaTime);
+        }
+        else
+        {
+            if (currentSpinSpeed > 0f)
+            {
+                currentSpinSpeed = Mathf.MoveTowards(currentSpinSpeed, 0f, spinDeceleration * Time.fixedDeltaTime);
+                transform.Rotate(0f, 0f, currentSpinSpeed * Time.fixedDeltaTime);
             }
         }
     }
