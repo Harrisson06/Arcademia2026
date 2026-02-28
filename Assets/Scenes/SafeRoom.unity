@@ -389,6 +389,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
+  itemData: {fileID: 11400000, guid: 4715f934c2d73914e90291332bf80037, type: 2}
 --- !u!1 &841522633
 GameObject:
   m_ObjectHideFlags: 0
@@ -4184,6 +4185,7 @@ MonoBehaviour:
   FillImage: {fileID: 757280100}
   maxStamina: 100
   currentStamina: 0
+  inventory: {fileID: 0}
 --- !u!114 &1214729692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6946,11 +6948,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7881884684377434208, guid: 8fb462abbbea87d4aa56d85aba723e76, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 275.7
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 7881884684377434208, guid: 8fb462abbbea87d4aa56d85aba723e76, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -65
+      value: -60
       objectReference: {fileID: 0}
     - target: {fileID: 8314078857796551571, guid: 8fb462abbbea87d4aa56d85aba723e76, type: 3}
       propertyPath: m_AnchorMax.x

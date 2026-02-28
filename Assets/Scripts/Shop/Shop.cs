@@ -11,7 +11,6 @@ public class Shop : MonoBehaviour
         if (PlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
             ShopUI.SetActive(true);
-            print(healthBar);
             healthBar.SetActive(false);
         }
     }
