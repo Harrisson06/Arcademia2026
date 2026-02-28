@@ -1,20 +1,29 @@
 using UnityEngine;
 using UnityEngine.Rendering;
+using TMPro;
+using UnityEngine.UI;
 
 public class Vitals : MonoBehaviour
 {
     [Header("Health")]
     public int maxHealth = 100;
-    private int currentHealth;
+    [SerializeField] private int currentHealth;
+    public GameObject HealthBar;
+    public Image FillImage;
 
     [Header("Stamina")]
     public int maxStamina = 100;
-    private int currentStamina;
+    [SerializeField] private int currentStamina;
 
-    private void Start()
+    private void Awake()
     {
         currentHealth = maxHealth;
         currentStamina = maxStamina;
+    }
+
+    private void LateUpdate()
+    {
+        UpdateHealthBar();
     }
 
     public void TakeHealth(int amount)
@@ -27,7 +36,6 @@ public class Vitals : MonoBehaviour
         {
             currentHealth -= amount;
         }
-        UpdateHealthBar();
     }
 
     public void GiveHealth(int amount)
@@ -40,12 +48,12 @@ public class Vitals : MonoBehaviour
         {
             currentHealth += amount;
         }
-        UpdateHealthBar();
     }
 
     public void UpdateHealthBar()
     {
-        // do health bar stuff
+        float targetFill = (float)currentHealth / maxHealth;
+        FillImage.fillAmount = Mathf.Lerp(FillImage.fillAmount, targetFill, Time.deltaTime * 5f);
     }
 
     void Die()
