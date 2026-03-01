@@ -3,7 +3,7 @@ using UnityEngine;
 public class Shop : MonoBehaviour
 {
     public GameObject ShopUI;
-    public GameObject healthBar;
+    public GameObject GameUI;
     public bool PlayerInRange;
     // Update is called once per frame
     void Update()
@@ -11,7 +11,7 @@ public class Shop : MonoBehaviour
         if (PlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
             ShopUI.SetActive(true);
-            healthBar.SetActive(false);
+            GameUI.SetActive(false);
         }
     }
     void OnTriggerEnter2D(Collider2D other)
@@ -28,6 +28,6 @@ public class Shop : MonoBehaviour
     public void Close()
     {
         ShopUI.SetActive(false);
-        healthBar.SetActive(true);
+        GameUI.SetActive(true);
     }
 }
