@@ -38,7 +38,18 @@ public class Movement : MonoBehaviour
 
     private void Awake()
     {
-        vitals = GetComponent<Vitals>();    
+        vitals = GetComponent<Vitals>();
+
+        if (GameManager.Instance != null)
+        {
+            maxSpeed = GameManager.Instance.maxSpeed;
+            dashForce = GameManager.Instance.dashForce;
+        }
+    }
+
+    public void SyncToManager()
+    {
+        GameManager.Instance?.SaveMovement(maxSpeed, dashForce);
     }
 
     void Update()
