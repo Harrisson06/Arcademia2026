@@ -32,7 +32,7 @@ public class EffectSystem : MonoBehaviour
 
     private void ChangeMaxSpeed(float amount) {
         movement.maxSpeed += amount;
-        movement.dashForce += amount * 2;
+        movement.dashForce += amount;
         movement.SyncToManager();
     }
     private void ChangeMaxHealth(int amount)
