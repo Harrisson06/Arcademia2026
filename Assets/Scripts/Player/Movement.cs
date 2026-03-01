@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.FilePathAttribute;
 
 public class Movement : MonoBehaviour
 {
@@ -44,6 +45,7 @@ public class Movement : MonoBehaviour
         {
             maxSpeed = GameManager.Instance.maxSpeed;
             dashForce = GameManager.Instance.dashForce;
+            transform.position = GameManager.Instance.transitionLoc;
         }
     }
 

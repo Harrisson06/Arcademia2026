@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     [Header("Inventory")]
     public List<ItemData> items = new();
 
+    [Header("Transition")]
+    public Vector3 transitionLoc;
+
     private void Awake()
     {
         if (Instance == null)
