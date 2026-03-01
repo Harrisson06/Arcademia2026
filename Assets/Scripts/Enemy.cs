@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 0.1f;
+    [SerializeField] private float moveSpeed = 0.08f;
     [SerializeField] private int damage = 10;
 
     private Transform player;
