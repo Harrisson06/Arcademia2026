@@ -25,14 +25,32 @@ public class Vitals : MonoBehaviour
 
     private void Awake()
     {
-        currentHealth = maxHealth;
-        currentStamina = maxStamina;
+        if (GameManager.Instance != null)
+        {
+            maxHealth = GameManager.Instance.maxHealth;
+            currentHealth = GameManager.Instance.currentHealth;
+            maxStamina = GameManager.Instance.maxStamina;
+            currentStamina = GameManager.Instance.currentStamina;
+            money = GameManager.Instance.money;
+        }
+    }
+
+    private void SyncToManager()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.SaveVitals(currentHealth, (int)currentStamina);
+            GameManager.Instance.money = money;
+            GameManager.Instance.maxHealth = maxHealth;   // in case debuff changed it
+            GameManager.Instance.maxStamina = maxStamina;
+        }
     }
 
     private void LateUpdate()
     {
         UpdateHealthBar();
         UpdateStaminaBar();
+        UpdateMoney();
     }
 
     public void TakeHealth(int amount)
@@ -45,6 +63,7 @@ public class Vitals : MonoBehaviour
         {
             currentHealth -= amount;
         }
+        SyncToManager();
     }
 
     public void GiveHealth(int amount)
@@ -57,6 +76,7 @@ public class Vitals : MonoBehaviour
         {
             currentHealth += amount;
         }
+        SyncToManager();
     }
 
     public void UpdateHealthBar()
@@ -76,6 +96,7 @@ public class Vitals : MonoBehaviour
             return false;
         
         currentStamina -= amount;
+        SyncToManager();
         return true;
     }
 
@@ -89,32 +110,28 @@ public class Vitals : MonoBehaviour
         {
             currentStamina += amount;
         }
+        SyncToManager();
     }
 
     public void UpdateStaminaBar()
     {
         float targetFill = (float)currentStamina / maxStamina;
         staminaBar.fillAmount = Mathf.Lerp(staminaBar.fillAmount, targetFill, Time.deltaTime * 5f);
-
     }
 
     public void TakeMoney(int amount)
     {
-
+        SyncToManager();
     }
 
     public void AddMoney(int amount)
     {
         money += amount;
+        SyncToManager();
     }
 
     public void UpdateMoney()
     {
         moneyText.text = $"Money\n${money}";
-    }
-
-    private void CollectItem()
-    {
-        
     }
 }

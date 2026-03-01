@@ -19,6 +19,13 @@ public class SellingShop : Interactable
         }
 
     }
+    public void RemoveDebuffs()
+    {
+        playerMovement.maxSpeed = 5f;
+        playerMovement.dashForce = 10f;
+        playerVitals.maxHealth = 100;
+        playerVitals.maxStamina = 100;
+    }
 
     protected override void OnInteract()
     {
@@ -76,5 +83,6 @@ public class SellingShop : Interactable
         Inventory.items.Clear();
         MoneyText.text = "$0";
         Inventory.Instance.text.text  = "Relics\n0";
+        RemoveDebuffs();
     }
 }

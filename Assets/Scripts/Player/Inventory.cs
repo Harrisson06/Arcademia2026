@@ -8,6 +8,7 @@ public class Inventory : MonoBehaviour
     public static Inventory Instance;
     public static List<ItemData> items = new();
     public TextMeshProUGUI text;
+    public EffectSystem effectSystem;
 
     private void Awake()
     {
@@ -21,5 +22,9 @@ public class Inventory : MonoBehaviour
     {
         items.Add(item);
         text.text = $"Relics\n{items.Count.ToString()}";
+        if(item.Debuff != ItemData.Debuffs.None)
+        {
+            effectSystem.ApplyDebuff(item.Debuff);
+        }
     }
 }

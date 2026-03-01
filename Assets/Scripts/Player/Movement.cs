@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
     private Vitals vitals;
 
     [Header("Basic Movement")]
-    [SerializeField] private float maxSpeed = 5f;
+    [SerializeField] public float maxSpeed = 5f;
     private const float acceleration = 50f;
     private const float deceleration = 70f;
     private Vector2 inputDirection;
@@ -21,7 +21,7 @@ public class Movement : MonoBehaviour
     private float idleDelay = 0.3f;
 
     [Header("Dash")]
-    private const float dashForce = 10.0f;
+    public float dashForce = 10.0f;
     private bool dashRequested = false;
     private float dashDuration = 0.2f;
     private float dashTimer = 0f;
@@ -38,7 +38,18 @@ public class Movement : MonoBehaviour
 
     private void Awake()
     {
-        vitals = GetComponent<Vitals>();    
+        vitals = GetComponent<Vitals>();
+
+        if (GameManager.Instance != null)
+        {
+            maxSpeed = GameManager.Instance.maxSpeed;
+            dashForce = GameManager.Instance.dashForce;
+        }
+    }
+
+    public void SyncToManager()
+    {
+        GameManager.Instance?.SaveMovement(maxSpeed, dashForce);
     }
 
     void Update()
