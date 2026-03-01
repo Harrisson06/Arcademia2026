@@ -795,7 +795,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -7056132960883430535, guid: 19393f39474a49945b8a7213171860a6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4363,6 +4363,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &983210447 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3589151298960477635, guid: 930303f8f5414824b8fd385939b3f515, type: 3}
+  m_PrefabInstance: {fileID: 927489124}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1075478197
 GameObject:
   m_ObjectHideFlags: 0
@@ -4812,7 +4823,7 @@ MonoBehaviour:
   maxStamina: 100
   currentStamina: 0
   staminaBar: {fileID: 250172197}
-  moneyText: {fileID: 0}
+  moneyText: {fileID: 983210447}
   inventory: {fileID: 2007064443}
 --- !u!114 &1214729692
 MonoBehaviour:
@@ -6793,8 +6804,8 @@ Camera:
   m_GameObject: {fileID: 1425357312}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.0754717, g: 0.06783503, b: 0.045923818, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
