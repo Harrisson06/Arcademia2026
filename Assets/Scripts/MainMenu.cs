@@ -17,12 +17,15 @@ public class MainMenu : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(defaultButton.gameObject);
         }
-        source = gameObject.AddComponent<AudioSource>();
-        source.clip = clip;
-        source.loop = true;
-        source.volume = 0f;
-        source.Play();
-        StartCoroutine(FadeIn(1.5f)); // fade in over 1.5 seconds
+        if (clip != null)
+        {
+            source = gameObject.AddComponent<AudioSource>();
+            source.clip = clip;
+            source.loop = true;
+            source.volume = 0f;
+            source.Play();
+            StartCoroutine(FadeIn(1.5f)); // fade in over 1.5 seconds
+        }
     }
 
     public IEnumerator FadeIn(float duration, float targetVolume = 1f)
@@ -44,9 +47,13 @@ public class MainMenu : MonoBehaviour
 
     public void OptionsMenu()
     {
-
+        SceneManager.LoadScene("HowToPlay");
     }
 
+    public void GoMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
     public void QuitGame()
     {
         #if UNITY_EDITOR
