@@ -16,3 +16,4 @@ MonoBehaviour:
   icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   collectSound: {fileID: 8300000, guid: a991119321facff4eb09eefeb6c09f4e, type: 3}
   sellValue: 20
+  Debuff: 1
